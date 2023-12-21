@@ -1,14 +1,18 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>People</h1>
-
-<div id="people">
+<div class="card-group">
   <% @people.each do |person| %>
-    <%= render person %>
-    <p>
-      <%= link_to "Show this person", person %>
-    </p>
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title"><%= person.name %></h5>
+        <p class="card-text">נפל.ה בגיל <%= person.age %>, במקור מקן <%= person.ken %></p>
+      </div>
+      <div class="card-footer">
+        <small class="text-body-secondary"><%= link_to "פרטים נוספים", person %></small>
+        <small class="text-body-secondary"><%= link_to "עריכה", edit_person_path(person) %></small>
+      </div>
+    </div>
   <% end %>
 </div>
 
-<%= link_to "New person", new_person_path %>
+<%= link_to "הוספת אדם חדש", new_person_path %>
