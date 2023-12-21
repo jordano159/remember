@@ -3,8 +3,8 @@
 <%= render @person %>
 
 <div>
-  <%= link_to "Edit this person", edit_person_path(@person) %> |
-  <%= link_to "Back to people", people_path %>
+  <%= link_to "עריכה", edit_person_path(@person) %> |
+  <%= link_to "חזרה לכלל הנופלים והנופלות", people_path %>
 
-  <%= button_to "Destroy this person", @person, method: :delete %>
+  <%= button_to "מחיקה", @person, method: :delete %>
 </div>
