@@ -3,7 +3,18 @@ class PeopleController < ApplicationController
 
   # GET /people or /people.json
   def index
-    @people = Person.all
+    if params[:query].present?
+      @people = Person.where("name LIKE ?", "%#{params[:query]}%")
+    else
+      @people = Person.all
+    end
+
+    # Not too clean but it works!
+    if turbo_frame_request?
+      render partial: "people", locals: { people: @people }
+    else
+      render :index
+    end
   end
 
   # GET /people/1 or /people/1.json

@@ -1,19 +1,37 @@
 
 <h1 class="mx-auto">אתר יזכור לתנועת השומר הצעיר</h1>
 
-<div class="card-group">
-  <% @people.each do |person| %>
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title"><%= person.name %></h5>
-        <p class="card-text">נפל.ה בגיל <%= person.age %>, במקור מקן <%= person.ken %></p>
-      </div>
-      <div class="card-footer">
-        <small class="text-body-secondary"><%= link_to "פרטים נוספים", person %></small>
-        <small class="text-body-secondary"><%= link_to "עריכה", edit_person_path(person) %></small>
-      </div>
-    </div>
-  <% end %>
+<%= form_with(url: people_path, method: :get, data: {turbo_frame: "people", turbo_action: "advance"}) do |form| %>
+  <%= form.label :query, "חיפוש לפי שם:", class: "block mb-2" %>
+  <div class="flex space-x-3">
+    <%= form.text_field :query, class: "py-3 px-4 rounded border ring-0 focus:ring-4 focus:ring-orange-100 focus:shadow-none focus:border-orange-500 focus:outline-none" %>
+
+    <%= form.submit 'חיפוש', class: "px-4 py-3 font-medium
+  bg-orange-300 text-neutal-900 rounded flex items-center cursor-pointer hover:bg-orange-400 focus:ring-4 ring-0 focus:ring-orange-100" %>
+  </div>
+<% end %>
+
+<!-- render new partial here -->
+<div class="my-6">
+  <%= render "people", people: @people %>
 </div>
+
+
+<% if false %>
+  <div class="card-group">
+    <% @people.each do |person| %>
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title"><%= person.name %></h5>
+          <p class="card-text">נפל.ה בגיל <%= person.age %>, במקור מקן <%= person.ken %></p>
+        </div>
+        <div class="card-footer">
+          <small class="text-body-secondary"><%= link_to "פרטים נוספים", person %></small>
+          <small class="text-body-secondary"><%= link_to "עריכה", edit_person_path(person) %></small>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>
 
 <%= link_to "הוספת אדם חדש", new_person_path %>
