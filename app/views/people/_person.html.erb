@@ -1,7 +1,8 @@
 <div id="<%= dom_id person %>">
+
   <p>
     <strong>שם מלא:</strong>
-    <%= person.name %>
+    <%= link_to person.name, person %>
   </p>
 
   <p>
@@ -43,5 +44,5 @@
     <strong>סיפור חיים:</strong>
     <%= person.life_story %>
   </p>
-
+  <%= link_to "עריכה", edit_person_path(person) %>
 </div>

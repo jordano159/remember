@@ -4,7 +4,7 @@ class PeopleController < ApplicationController
   # GET /people or /people.json
   def index
     if params[:query].present?
-      @people = Person.where("name LIKE ?", "%#{params[:query]}%")
+      @people = Person.search("%#{params[:query]}%")
     else
       @people = Person.all
     end
